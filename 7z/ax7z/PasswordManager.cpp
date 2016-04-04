@@ -1,6 +1,6 @@
 //PasswordManager.cpp
 #include "PasswordManager.h"
-#include "../../../Common/StringConvert.h"
+#include "../../3rdparty/7z/CPP/Common/StringConvert.h"
 #include "resource.h"
 
 PasswordManager& PasswordManager::Get()

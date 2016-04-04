@@ -6,10 +6,10 @@
 #define __EXTRACTCALLBACK_H
 
 //#include "Common/String.h"
-#include "../../Common/FileStreams.h"
-#include "../../IPassword.h"
-#include "../../Archive/IArchive.h"
-#include "../../UI/Common/ZipRegistry.h"
+#include "../../3rdparty/7z/CPP/7zip/Common/FileStreams.h"
+#include "../../3rdparty/7z/CPP/7zip/IPassword.h"
+#include "../../3rdparty/7z/CPP/7zip/Archive/IArchive.h"
+#include "../../3rdparty/7z/CPP/7zip/UI/Common/ZipRegistry.h"
 #include <stdio.h>
 
 #include "entryFuncs.h"

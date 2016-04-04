@@ -6,11 +6,11 @@
 #define __OPENCALLBACK_H
 
 //#include "Common/String.h"
-#include "Common/MyCom.h"
-#include "Windows/FileFind.h"
+#include "../../3rdparty/7z/CPP/Common/MyCom.h"
+#include "../../3rdparty/7z/CPP/Windows/FileFind.h"
 
-#include "../../Archive/IArchive.h"
-#include "../../IPassword.h"
+#include "../../3rdparty/7z/CPP/7zip/Archive/IArchive.h"
+#include "../../3rdparty/7z/CPP/7zip/IPassword.h"
 
 class COpenCallbackImp2: 
   public IArchiveOpenCallback,
