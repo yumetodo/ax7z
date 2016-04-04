@@ -85,8 +85,6 @@ static bool GetUINT64Value(IInArchive *archive, UINT32 index,
     if (archive->GetProperty(index, propID, &propVariant) != S_OK) {
         return false;
     }
-    if (propVariant.vt == VT_EMPTY)
-        return false;
     return ConvertPropVariantToUInt64(propVariant, value);
 }
 
