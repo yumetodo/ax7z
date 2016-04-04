@@ -15,40 +15,40 @@
 #include "entryFuncs.h"
 
 class CExtractCallbackImp: 
-  public IArchiveExtractCallback,
-  public ICryptoGetTextPassword,
-  public CMyUnknownImp
+	public IArchiveExtractCallback,
+	public ICryptoGetTextPassword,
+	public CMyUnknownImp
 {
 public:
-  MY_UNKNOWN_IMP1(ICryptoGetTextPassword)
+	MY_UNKNOWN_IMP1(ICryptoGetTextPassword)
 
   // IProgress
-  STDMETHOD(SetTotal)(UINT64 size);
-  STDMETHOD(SetCompleted)(const UINT64 *completeValue);
+	STDMETHOD(SetTotal)(UINT64 size);
+	STDMETHOD(SetCompleted)(const UINT64 *completeValue);
 
   // IExtractCallback200
-  STDMETHOD(GetStream)(UINT32 index, ISequentialOutStream **outStream, 
-      INT32 askExtractMode);
-  STDMETHOD(PrepareOperation)(INT32 askExtractMode);
-  STDMETHOD(SetOperationResult)(INT32 resultEOperationResult);
+	STDMETHOD(GetStream)(UINT32 index, ISequentialOutStream **outStream, 
+		INT32 askExtractMode);
+	STDMETHOD(PrepareOperation)(INT32 askExtractMode);
+	STDMETHOD(SetOperationResult)(INT32 resultEOperationResult);
 
   // ICryptoGetTextPassword
-  STDMETHOD(CryptoGetTextPassword)(BSTR *password);
+	STDMETHOD(CryptoGetTextPassword)(BSTR *password);
 
 private:
 //  CMyComPtr<IInArchive> m_ArchiveHandler;
-  IInArchive* m_ArchiveHandler;
+	IInArchive* m_ArchiveHandler;
 
-  bool IsEncrypted(UINT32 index);
+	bool IsEncrypted(UINT32 index);
 public:
-  void Init(IInArchive *archive, char** pBuf, UINT32 nBufSize, FILE* fp, UINT32 index);
+	void Init(IInArchive *archive, char** pBuf, UINT32 nBufSize, FILE* fp, UINT32 index);
 
-  UINT64 m_NumErrors;
+	UINT64 m_NumErrors;
 private:
-  char** m_pBuf;
-  FILE* m_fp;
-  UINT32 m_nBufSize;
-  UINT32 m_nIndex;
+	char** m_pBuf;
+	FILE* m_fp;
+	UINT32 m_nBufSize;
+	UINT32 m_nIndex;
 };
 
 #endif
