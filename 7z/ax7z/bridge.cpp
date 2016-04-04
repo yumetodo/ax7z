@@ -56,7 +56,7 @@ static bool MyOpenArchive(CCodecs *cc, const UString &archiveName,
     NFile::NDir::MyGetFullPathName(archiveName, fullName, fileNamePartStartIndex);
     openCallbackSpec->LoadFileInfo(
         fullName.Left(fileNamePartStartIndex), 
-        fullName.Mid(fileNamePartStartIndex));
+        fullName.Mid(fileNamePartStartIndex, fullName.Len() - fileNamePartStartIndex));
 
     int dummy;
     HRESULT result;
@@ -107,7 +107,7 @@ static SOLID_TYPE IsSolid(IInArchive* archive, const NFind::CFileInfo& archiverI
                 {
                     int dotPos = archiverInfo.Name.ReverseFind(L'.');
                     if (dotPos >= 0)
-                        extension = archiverInfo.Name.Mid(dotPos + 1);
+                        extension = archiverInfo.Name.Mid(dotPos + 1, archiverInfo.Name.Len() - dotPos - 1);
                 }
                 if (MyStringCompareNoCase(extension.Ptr(), L"7z") == 0) {
                     return SOLID_7Z;
@@ -125,7 +125,7 @@ static SOLID_TYPE IsSolid(IInArchive* archive, const NFind::CFileInfo& archiverI
     {
         int dotPos = archiverInfo.Name.ReverseFind(L'.');
         if (dotPos >= 0)
-            extension = archiverInfo.Name.Mid(dotPos + 1);
+            extension = archiverInfo.Name.Mid(dotPos + 1, archiverInfo.Name.Len() - dotPos - 1);
     }
     if (MyStringCompareNoCase(extension.Ptr(), L"7z") == 0) {
         NWindows::NCOM::CPropVariant aPropVariant;
