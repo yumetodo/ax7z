@@ -210,7 +210,7 @@ int GetArchiveInfoEx(LPSTR filename, long len, HLOCAL *lphInf)
         }
 
         UINT64 packSize = 0;
-        if (!GetUINT64Value(archiveHandler, i, kpidPackedSize, packSize)) {
+        if (!GetUINT64Value(archiveHandler, i, kpidPackSize, packSize)) {
 //            continue;
         }
 
@@ -379,7 +379,7 @@ static int GetArchiveInfoWEx_impl(LPCWSTR filename, std::vector<fileInfoW>& vFil
         }
 
         UINT64 packSize = 0;
-        if (!GetUINT64Value(archiveHandler, i, kpidPackedSize, packSize)) {
+        if (!GetUINT64Value(archiveHandler, i, kpidPackSize, packSize)) {
 //            continue;
         }
 
