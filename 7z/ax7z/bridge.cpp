@@ -112,7 +112,7 @@ static SOLID_TYPE IsSolid(IInArchive* archive, const NFind::CFileInfo& archiverI
                     if (dotPos >= 0)
                         extension = archiverInfo.Name.Mid(dotPos + 1);
                 }
-                if (extension.CompareNoCase(L"7z") == 0) {
+                if (MyStringCompareNoCase(extension.Ptr(), L"7z") == 0) {
                     return SOLID_7Z;
                 } else {
                     return SOLID_RAR;
@@ -130,7 +130,7 @@ static SOLID_TYPE IsSolid(IInArchive* archive, const NFind::CFileInfo& archiverI
         if (dotPos >= 0)
             extension = archiverInfo.Name.Mid(dotPos + 1);
     }
-    if (extension.CompareNoCase(L"7z") == 0) {
+    if (MyStringCompareNoCase(extension.Ptr(), L"7z") == 0) {
         NWindows::NCOM::CPropVariant aPropVariant;
         BOOL bFlag = 0;
         for (size_t i = 0; i < numItems; ++i) {
