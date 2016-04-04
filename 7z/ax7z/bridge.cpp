@@ -87,8 +87,7 @@ static bool GetUINT64Value(IInArchive *archive, UINT32 index,
     }
     if (propVariant.vt == VT_EMPTY)
         return false;
-    value = ConvertPropVariantToUInt64(propVariant);
-    return true;
+    return ConvertPropVariantToUInt64(propVariant, value);
 }
 
 enum SOLID_TYPE
