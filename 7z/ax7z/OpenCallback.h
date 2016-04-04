@@ -36,6 +36,12 @@ private:
 	NWindows::NFile::NFind::CFileInfo _fileInfo;
 public:
 	COpenCallbackImp2() {}
+	void LoadFileInfo(const UString& fullpath)
+	{
+		if (!_fileInfo.Find(fullpath))
+			throw 1;
+		_folderPrefix = ExtractDirPrefixFromPath(fullpath);
+	}
 	void LoadFileInfo(const UString &folderPrefix,  const UString &fileName)
 	{
 		_folderPrefix = folderPrefix;

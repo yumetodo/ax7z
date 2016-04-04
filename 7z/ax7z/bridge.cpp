@@ -54,11 +54,8 @@ static bool MyOpenArchive(CCodecs *cc, const UString &archiveName,
 	PasswordManager::Get().NotifyArchive(archiveName);
 
 	UString fullName;
-	int fileNamePartStartIndex;
-	NFile::NDir::MyGetFullPathName(archiveName, fullName, fileNamePartStartIndex);
-	openCallbackSpec->LoadFileInfo(
-		fullName.Left(fileNamePartStartIndex), 
-		fullName.Mid(fileNamePartStartIndex, fullName.Len() - fileNamePartStartIndex));
+	NFile::NDir::MyGetFullPathName(archiveName, fullName);
+	openCallbackSpec->LoadFileInfo(fullName);
 
 	int dummy;
 	HRESULT result;
