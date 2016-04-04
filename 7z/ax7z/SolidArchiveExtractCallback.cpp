@@ -129,9 +129,7 @@ STDMETHODIMP CSolidArchiveExtractCallbackImp::SetOperationResult(INT32 resultEOp
 STDMETHODIMP CSolidArchiveExtractCallbackImp::CryptoGetTextPassword(BSTR *password)
 {
   UString usPassword = PasswordManager::Get().GetPassword(false);
-  CMyComBSTR tempName(usPassword);
-  *password = tempName.Detach();
-
+  *password = ::SysAllocString(usPassword);
   return S_OK;
 }
   
