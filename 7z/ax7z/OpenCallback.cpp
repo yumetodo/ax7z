@@ -3,13 +3,13 @@
 #include "OpenCallback.h"
 #include "PasswordManager.h"
 
-#include "Common/StdOutStream.h"
-#include "Common/StdInStream.h"
-#include "Common/StringConvert.h"
+#include "../../3rdparty/7z/CPP/Common/StdOutStream.h"
+#include "../../3rdparty/7z/CPP/Common/StdInStream.h"
+#include "../../3rdparty/7z/CPP/Common/StringConvert.h"
 
-#include "../../Common/FileStreams.h"
+#include "../../3rdparty/7z/CPP/7zip/Common/FileStreams.h"
 
-#include "Windows/PropVariant.h"
+#include "../../3rdparty/7z/CPP/Windows/PropVariant.h"
 
 STDMETHODIMP COpenCallbackImp2::SetTotal(const UINT64 *files, const UINT64 *bytes)
 {
@@ -30,7 +30,7 @@ STDMETHODIMP COpenCallbackImp2::GetProperty(PROPID propID, PROPVARIANT *value)
         propVariant = _fileInfo.Name;
         break;
     case kpidIsFolder:
-        propVariant = _fileInfo.IsDirectory();
+        propVariant = _fileInfo.IsDir();
         break;
     case kpidSize:
         propVariant = _fileInfo.Size;
@@ -57,9 +57,7 @@ STDMETHODIMP COpenCallbackImp2::GetStream(const wchar_t *name,
 {
     *inStream = NULL;
     UString fullPath = _folderPrefix + name;
-    if (!NWindows::NFile::NFind::FindFile(fullPath, _fileInfo))
-        return S_FALSE;
-    if (_fileInfo.IsDirectory())
+    if (!_fileInfo.Find(fullPath) || _fileInfo.IsDir())
         return S_FALSE;
     CInFileStream *inFile = new CInFileStream;
     CMyComPtr<IInStream> inStreamTemp = inFile;

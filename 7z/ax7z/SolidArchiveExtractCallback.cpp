@@ -2,10 +2,10 @@
 #include <windows.h>
 #include "SolidArchiveExtractCallback.h"
 #include "PasswordManager.h"
-#include "Common/StringConvert.h"
-#include "Windows/FileDir.h"
-#include "Windows/PropVariant.h"
-#include "Windows/PropVariantConversions.h"
+#include "../../3rdparty/7z/CPP/Common/StringConvert.h"
+#include "../../3rdparty/7z/CPP/Windows/FileDir.h"
+#include "../../3rdparty/7z/CPP/Windows/PropVariant.h"
+#include "../../3rdparty/7z/CPP/Windows/PropVariantConv.h"
 #include "resource.h"
 #include <assert.h>
 

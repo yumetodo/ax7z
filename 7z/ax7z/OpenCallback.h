@@ -36,13 +36,13 @@ public:
 
 private:
   UString _folderPrefix;
-  NWindows::NFile::NFind::CFileInfoW _fileInfo;
+  NWindows::NFile::NFind::CFileInfo _fileInfo;
 public:
   COpenCallbackImp2() {}
   void LoadFileInfo(const UString &folderPrefix,  const UString &fileName)
   {
     _folderPrefix = folderPrefix;
-    if (!NWindows::NFile::NFind::FindFile(_folderPrefix + fileName, _fileInfo))
+    if (!_fileInfo.Find(_folderPrefix + fileName))
       throw 1;
   }
 };
