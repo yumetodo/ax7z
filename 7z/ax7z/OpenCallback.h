@@ -7,6 +7,7 @@
 
 //#include "Common/String.h"
 #include "../../3rdparty/7z/CPP/Common/MyCom.h"
+#include "../../3rdparty/7z/CPP/Common/Wildcard.h"
 #include "../../3rdparty/7z/CPP/Windows/FileFind.h"
 
 #include "../../3rdparty/7z/CPP/7zip/Archive/IArchive.h"
