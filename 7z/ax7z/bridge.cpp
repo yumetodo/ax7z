@@ -215,7 +215,7 @@ int GetArchiveInfoEx(LPSTR filename, long len, HLOCAL *lphInf)
 		}
 
 		NCOM::CPropVariant property;
-		if (S_OK != archiveHandler->GetProperty(i, kpidLastWriteTime, &property)) {
+		if (S_OK != archiveHandler->GetProperty(i, kpidMTime/*kpidLastWriteTime*/, &property)) {
 			continue;
 		}
 		if (property.vt != VT_FILETIME) {
@@ -386,7 +386,7 @@ static int GetArchiveInfoWEx_impl(LPCWSTR filename, std::vector<fileInfoW>& vFil
 		}
 
 		NCOM::CPropVariant property;
-		if (S_OK != archiveHandler->GetProperty(i, kpidLastWriteTime, &property)) {
+		if (S_OK != archiveHandler->GetProperty(i, kpidMTime/*kpidLastWriteTime*/, &property)) {
 			continue;
 		}
 		if (property.vt != VT_FILETIME) {

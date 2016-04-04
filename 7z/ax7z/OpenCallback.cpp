@@ -29,23 +29,23 @@ STDMETHODIMP COpenCallbackImp2::GetProperty(PROPID propID, PROPVARIANT *value)
     case kpidName:
         propVariant = _fileInfo.Name;
         break;
-    case kpidIsFolder:
+    case kpidIsDir://kpidIsFolder
         propVariant = _fileInfo.IsDir();
         break;
     case kpidSize:
         propVariant = _fileInfo.Size;
         break;
-    case kpidAttributes:
-        propVariant = (UINT32)_fileInfo.Attributes;
+    case kpidAttrib://kpidAttributes
+        propVariant = (UINT32)_fileInfo.Attrib;
         break;
-    case kpidLastAccessTime:
-        propVariant = _fileInfo.LastAccessTime;
+    case kpidATime://kpidLastAccessTime
+        propVariant = _fileInfo.ATime;
         break;
-    case kpidCreationTime:
-        propVariant = _fileInfo.CreationTime;
+    case kpidCTime://kpidCreationTime
+        propVariant = _fileInfo.CTime;
         break;
-    case kpidLastWriteTime:
-        propVariant = _fileInfo.LastWriteTime;
+    case kpidMTime://kpidLastWriteTime
+        propVariant = _fileInfo.MTime;
         break;
     }
     propVariant.Detach(value);
