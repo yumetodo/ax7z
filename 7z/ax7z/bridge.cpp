@@ -1,7 +1,9 @@
 /*
 7-zip decode engine - susie bridge
 */
-
+#if defined(_MSC_VER) && 1400 <= _MSC_VER
+#define _CRT_SECURE_CPP_OVERLOAD_STANDARD_NAMES 1
+#endif
 #define NOMINMAX
 #include <windows.h>
 #undef NOMINMAX
@@ -277,7 +279,11 @@ int GetArchiveInfoEx(LPSTR filename, long len, HLOCAL *lphInf)
 				bError = true;
 				break;
 			}
+#if defined(_MSC_VER) && 1400 <= _MSC_VER
+			strcpy_s(&pinfo->path[iCurPos], _countof(pinfo->path) - iCurPos, (LPCSTR)s);
+#else
 			strcpy(&pinfo->path[iCurPos], (LPCSTR)s);
+#endif
 			pinfo->path[iNextPos - 1] = '\\';
 			iCurPos = iNextPos;
 		}
@@ -444,7 +450,11 @@ static int GetArchiveInfoWEx_impl(LPCWSTR filename, std::vector<fileInfoW>& vFil
 				bError = true;
 				break;
 			}
+#if defined(_MSC_VER) && 1400 <= _MSC_VER
+			wcscpy_s(&pinfo->path[iCurPos], _countof(pinfo->path) - iCurPos, (LPCWSTR)s);
+#else
 			wcscpy(&pinfo->path[iCurPos], (LPCWSTR)s);
+#endif
 			pinfo->path[iNextPos - 1] = L'\\';
 			iCurPos = iNextPos;
 		}
@@ -541,10 +551,16 @@ int GetFileEx(char *filename, HLOCAL *dest, const char* pOutFile, fileInfo *pinf
 		}
 		extractCallbackSpec->Init(archiveHandler, (char**)dest, static_cast<UINT32>(unpackSize), NULL, iExtractFileIndex);
 	} else {
+#if defined(_MSC_VER) && 1400 <= _MSC_VER
+		if (fopen_s(&fp, pOutFile, "wb")) {
+			return SPI_FILE_WRITE_ERROR;
+		}
+#else
 		fp = fopen(pOutFile, "wb");
 		if (fp == NULL) {
 			return SPI_FILE_WRITE_ERROR;
 		}
+#endif
 		extractCallbackSpec->Init(archiveHandler, NULL, static_cast<UINT32>(unpackSize), fp, iExtractFileIndex);
 	}
 
@@ -629,10 +645,16 @@ int GetFileWEx(wchar_t *filename, HLOCAL *dest, const wchar_t* pOutFile, fileInf
 		}
 		extractCallbackSpec->Init(archiveHandler, (char**)dest, static_cast<UINT32>(unpackSize), NULL, iExtractFileIndex);
 	} else {
+#if defined(_MSC_VER) && 1400 <= _MSC_VER
+		if (_wfopen_s(&fp, pOutFile, L"wb")) {
+			return SPI_FILE_WRITE_ERROR;
+		}
+#else
 		fp = _wfopen(pOutFile, L"wb");
 		if (fp == NULL) {
 			return SPI_FILE_WRITE_ERROR;
 		}
+#endif
 		extractCallbackSpec->Init(archiveHandler, NULL, static_cast<UINT32>(unpackSize), fp, iExtractFileIndex);
 	}
 
