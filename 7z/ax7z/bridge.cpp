@@ -98,7 +98,7 @@ enum SOLID_TYPE
     SOLID_7Z
 };
 
-static SOLID_TYPE IsSolid(IInArchive* archive, const NFind::CFileInfoW& archiverInfo, UINT32 numItems)
+static SOLID_TYPE IsSolid(IInArchive* archive, const NFind::CFileInfo& archiverInfo, UINT32 numItems)
 {
     // rar ÇÃèÍçáÇÕ kpidSolidÇ™ê›íËÇ≥ÇÍÇƒÇ¢ÇÈÇÊÇ§Ç»ÇÃÇ≈ÇªÇøÇÁÇégóp
     // 7z ÇÃèÍçáÇ≈Ç‡ê›íËÇ≥ÇÍÇƒÇ¢ÇÈèÍçáÇ†ÇË
@@ -154,7 +154,7 @@ int GetArchiveInfoEx(LPSTR filename, long len, HLOCAL *lphInf)
 {
     UString archiveName = MultiByteToUnicodeString(filename);
 
-    NFind::CFileInfoW archiveFileInfo;
+    NFind::CFileInfo archiveFileInfo;
     if (!NFind::FindFile(archiveName, archiveFileInfo) || archiveFileInfo.IsDirectory()) {
         return SPI_FILE_READ_ERROR;
     }
@@ -328,7 +328,7 @@ static int GetArchiveInfoWEx_impl(LPCWSTR filename, std::vector<fileInfoW>& vFil
 {
     UString archiveName = filename;
 
-    NFind::CFileInfoW archiveFileInfo;
+    NFind::CFileInfo archiveFileInfo;
     if (!NFind::FindFile(archiveName, archiveFileInfo) || archiveFileInfo.IsDirectory()) {
         return SPI_FILE_READ_ERROR;
     }
@@ -511,7 +511,7 @@ int GetFileEx(char *filename, HLOCAL *dest, const char* pOutFile, fileInfo *pinf
 {
     UString archiveName = MultiByteToUnicodeString(filename);
 
-    NFind::CFileInfoW archiveFileInfo;
+    NFind::CFileInfo archiveFileInfo;
     if (!NFind::FindFile(archiveName, archiveFileInfo) || archiveFileInfo.IsDirectory()) {
         return SPI_FILE_READ_ERROR;
     }
@@ -606,7 +606,7 @@ int GetFileWEx(wchar_t *filename, HLOCAL *dest, const wchar_t* pOutFile, fileInf
 {
     UString archiveName = filename;
 
-    NFind::CFileInfoW archiveFileInfo;
+    NFind::CFileInfo archiveFileInfo;
     if (!NFind::FindFile(archiveName, archiveFileInfo) || archiveFileInfo.IsDirectory()) {
         return SPI_FILE_READ_ERROR;
     }
@@ -721,7 +721,7 @@ int ExtractSolidArchiveEx(LPCWSTR filename, SPI_OnWriteCallback pCallback)
 
     UString archiveName = filename;
 
-    NFind::CFileInfoW archiveFileInfo;
+    NFind::CFileInfo archiveFileInfo;
     if (!NFind::FindFile(archiveName, archiveFileInfo) || archiveFileInfo.IsDirectory()) {
         return SPI_FILE_READ_ERROR;
     }
