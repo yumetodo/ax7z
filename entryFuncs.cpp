@@ -16,7 +16,7 @@ ax7z entry funcs
 #include "infcache.h"
 #include <sstream>
 #include "resource.h"
-#include "7z/7zip/Bundles/ax7z/PasswordManager.h"
+#include "7z/ax7z/PasswordManager.h"
 #include <boost/algorithm/string/split.hpp>
 #include <boost/algorithm/string/classification.hpp>
 #include "version.hpp"
