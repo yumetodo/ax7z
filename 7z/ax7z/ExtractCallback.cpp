@@ -151,9 +151,7 @@ STDMETHODIMP CExtractCallbackImp::SetOperationResult(INT32 resultEOperationResul
 STDMETHODIMP CExtractCallbackImp::CryptoGetTextPassword(BSTR *password)
 {
 	UString usPassword = PasswordManager::Get().GetPassword(false);
-	CMyComBSTR tempName(usPassword);
-	*password = tempName.Detach();
-
+	*password = ::SysAllocString(usPassword);
 	return S_OK;
 }
 
