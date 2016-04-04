@@ -277,7 +277,7 @@ int GetArchiveInfoEx(LPSTR filename, long len, HLOCAL *lphInf)
         int iCurPos = 0;
         for (int j = 0; j < (vPaths.Size() - 1); ++j) {
             AString s = UnicodeStringToMultiByte(vPaths[j]);
-            int iNextPos = iCurPos + s.Length() + 1;
+            int iNextPos = iCurPos + s.Len() + 1;
             if (iNextPos >= 200) {
                 bError = true;
                 break;
@@ -292,7 +292,7 @@ int GetArchiveInfoEx(LPSTR filename, long len, HLOCAL *lphInf)
         pinfo->path[iCurPos] = '\0';
         // filename        
         AString s = UnicodeStringToMultiByte(vPaths.Back());
-        if (s.Length() >= 200) {
+        if (s.Len() >= 200) {
             s = s.Left(199);
         }
         strcpy(pinfo->filename, (LPCSTR)s);
@@ -446,7 +446,7 @@ static int GetArchiveInfoWEx_impl(LPCWSTR filename, std::vector<fileInfoW>& vFil
         int iCurPos = 0;
         for (int j = 0; j < (vPaths.Size() - 1); ++j) {
             UString s = vPaths[j];
-            int iNextPos = iCurPos + s.Length() + 1;
+            int iNextPos = iCurPos + s.Len() + 1;
             if (iNextPos >= 200) {
                 bError = true;
                 break;
@@ -461,7 +461,7 @@ static int GetArchiveInfoWEx_impl(LPCWSTR filename, std::vector<fileInfoW>& vFil
         pinfo->path[iCurPos] = L'\0';
         // filename        
         UString s = vPaths.Back();
-        if (s.Length() >= 200) {
+        if (s.Len() >= 200) {
             s = s.Left(199);
         }
         wcscpy(pinfo->filename, (LPCWSTR)s);
